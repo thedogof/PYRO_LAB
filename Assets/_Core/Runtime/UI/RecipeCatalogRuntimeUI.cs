@@ -33,7 +33,7 @@ namespace PyroLab.Fireworks
 #if UNITY_EDITOR
                     if (catalog == null)
                     {
-                        catalog = AssetDatabase.LoadAssetAtPath<RecipeCatalog>("Assets/_Core/Data/RecipeCatalog.asset");
+                        catalog = AssetDatabase.LoadAssetAtPath<RecipeCatalog>("Assets/_Core/Data/Resources/RecipeCatalog.asset");
                     }
 #endif
                 }
