@@ -1,3 +1,9 @@
+
+
+<p align="center">
+  <img src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-0d04-622f-abf4-4944cfac3512/raw?se=2025-10-03T12%3A18%3A41Z&sp=r&sv=2024-08-04&sr=b&scid=8b969da3-2112-5aeb-b33a-fcbf794ace38&skoid=03727f49-62d3-42ac-8350-1c0e6559d238&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-10-03T00%3A23%3A51Z&ske=2025-10-04T00%3A23%3A51Z&sks=b&skv=2024-08-04&sig=A/VpjEkuWhq69vvZWaoKD4N%2BzJNdQdQbpdGtpgVfKX4%3D" alt="PYRO_LAB Banner" width="900"/>
+</p>
+
 # PYRO_LAB 🎆
 
 A Unity-based prototype for **fireworks simulation**.  
