@@ -42,7 +42,8 @@ Assets/
       RecipeJsonUtility.cs
       JsonPresetExporter.cs
     Data/
-      RecipeCatalog.asset
+      Resources/
+        RecipeCatalog.asset
   Prefabs/
     PF_FireworkLauncher.prefab
   Recipes/
@@ -89,7 +90,7 @@ README.md
 5. 透過 **Export JSON** / **Import JSON** 保存或載入純文字 Recipe 設定。所有匯出檔案會儲存在 `Assets/RecipesJSON/`，可再從該資料夾匯入並自動建立新的 ScriptableObject。
 
 ## 📚 Recipe Catalog 與 Demo UI
-- 在 `Assets/_Core/Data/RecipeCatalog.asset` 維護配方清單，可直接拖曳 `FireworkRecipe` 進入清單並於專案內快速重複使用。
+- 在 `Assets/_Core/Data/Resources/RecipeCatalog.asset` 維護配方清單，可直接拖曳 `FireworkRecipe` 進入清單並於專案內快速重複使用。
 - 執行 Demo 場景時，畫面左上角會出現簡易的 **Recipe Catalog** 視窗，可從資料庫中選擇配方、立即套用至 `FireworkSpawner` 並觸發一次發射。
 - 需要更多配方時，可將新的 `.asset` 放入 `Assets/Recipes/`，再於 Catalog 中登錄即可。
 - 匯出→刪除 `.asset`→從 JSON 匯入後，視覺結果將與原始設定一致（允許極微小數值誤差）。
