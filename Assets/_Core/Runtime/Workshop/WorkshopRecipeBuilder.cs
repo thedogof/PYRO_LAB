@@ -58,6 +58,33 @@ namespace PyroLab.Fireworks
             target.trailLengthScale = Mathf.Lerp(1.5f, 4f, Mathf.Clamp01(shellHardness));
 
             target.layers ??= new List<FireworkLayer>();
+            foreach (var existingLayer in target.layers)
+            {
+                if (existingLayer?.modifiers == null)
+                {
+                    continue;
+                }
+
+                foreach (var modifier in existingLayer.modifiers)
+                {
+                    if (modifier == null)
+                    {
+                        continue;
+                    }
+
+                    if (Application.isPlaying)
+                    {
+                        UnityEngine.Object.Destroy(modifier);
+                    }
+                    else
+                    {
+                        UnityEngine.Object.DestroyImmediate(modifier);
+                    }
+                }
+
+                existingLayer.modifiers.Clear();
+            }
+
             target.layers.Clear();
 
             var timing = timingDefinition != null && timingDefinition.track != null
