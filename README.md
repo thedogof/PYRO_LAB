@@ -67,6 +67,13 @@ README.md
 3. 播放 Modular 場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看多組預設煙火組合；鍵盤 `1~6` 可切換推薦配方。
 4. 在 Demo_Workshop 中透過 Inspector 觀察 `WorkshopManager` 的材料選擇、Tier 預設與成本／得分估算，使用 **Export / Import JSON** 按鈕保存設定。
 
+### 範例配方快速切換
+- 於 **Demo_Modular** 場景按下 Play 後，畫面左上角會出現新的 IMGUI 視窗（與 Recipe Catalog 使用相同的疊加層）。在視窗內的「Example Recipe」下拉選單中，可即時載入六組範例 JSON 配方並套用至 `FireworkSpawner`。
+- 任一時刻按下視窗下方的 **Reset** 按鈕即可回到預設 ScriptableObject 設定，方便比較自訂與範例參數。
+- 範例 JSON 皆儲存在 `Assets/RecipesJSON/Examples/`；欲新增自訂預設，可將自製的 JSON 檔案放到同一資料夾並重新整理專案，選單會自動列出同資料夾內的檔案名稱。
+- 若沒有看到下拉選單，請確認 Game View 未被縮放到過小尺寸；IMGUI 視窗固定鎖在畫面左上角，若你曾調整過 `PYRO → Demo Modular Loader` 視窗位置，可在播放前於 Unity 上方選單重新開啟以重置。
+- 下拉選單目前依賴 `Assets/RecipesJSON/Examples/` 的資料夾結構，若將資料夾改名或移動，請同步更新 `DemoModularRecipeLoader` 的資料夾路徑常數，否則選單會顯示為空白。
+
 ## 📚 Workshop 經濟與材料
 - 參考 [`docs/workshop-economy.md`](docs/workshop-economy.md) 了解 Tier 成本、預設材料與解鎖條件。
 
