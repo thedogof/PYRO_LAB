@@ -58,6 +58,33 @@ namespace PyroLab.Fireworks
             target.trailLengthScale = Mathf.Lerp(1.5f, 4f, Mathf.Clamp01(shellHardness));
 
             target.layers ??= new List<FireworkLayer>();
+            foreach (var existingLayer in target.layers)
+            {
+                if (existingLayer?.modifiers == null)
+                {
+                    continue;
+                }
+
+                foreach (var modifier in existingLayer.modifiers)
+                {
+                    if (modifier == null)
+                    {
+                        continue;
+                    }
+
+                    if (Application.isPlaying)
+                    {
+                        UnityEngine.Object.Destroy(modifier);
+                    }
+                    else
+                    {
+                        UnityEngine.Object.DestroyImmediate(modifier);
+                    }
+                }
+
+                existingLayer.modifiers.Clear();
+            }
+
             target.layers.Clear();
 
             var timing = timingDefinition != null && timingDefinition.track != null
@@ -91,6 +118,7 @@ namespace PyroLab.Fireworks
                 if (!addedGravityModifier)
                 {
                     var gravity = ScriptableObject.CreateInstance<GravityDragModifier>();
+                    gravity.hideFlags = HideFlags.DontSave;
                     gravity.gravityFactor = target.gravityFactor;
                     gravity.dragCurve = BuildDragCurve(averageThickness);
                     layer.modifiers.Add(gravity);
@@ -98,6 +126,7 @@ namespace PyroLab.Fireworks
                 }
 
                 var trail = ScriptableObject.CreateInstance<TrailModifier>();
+                trail.hideFlags = HideFlags.DontSave;
                 float starTrail = star != null ? star.trail : 0.2f;
                 trail.lengthScale = target.trailLengthScale + shellHardness * 2f + starTrail * 2f;
                 trail.velocityStretch = 0.6f;
@@ -106,6 +135,7 @@ namespace PyroLab.Fireworks
                 if (star != null && star.strobeFrequency > 0f)
                 {
                     var strobe = ScriptableObject.CreateInstance<StrobeModifier>();
+                    strobe.hideFlags = HideFlags.DontSave;
                     strobe.frequency = star.strobeFrequency;
                     strobe.duty = star.strobeDuty;
                     layer.modifiers.Add(strobe);
@@ -114,6 +144,7 @@ namespace PyroLab.Fireworks
                 if (star != null && star.twinkleAmount > 0f)
                 {
                     var twinkle = ScriptableObject.CreateInstance<TwinkleModifier>();
+                    twinkle.hideFlags = HideFlags.DontSave;
                     twinkle.twinkleProbability = star.twinkleAmount;
                     twinkle.intensityVariance = Mathf.Lerp(0.1f, 0.6f, star.twinkleAmount);
                     layer.modifiers.Add(twinkle);
@@ -197,6 +228,7 @@ namespace PyroLab.Fireworks
                 }
 
                 var cloneModifier = UnityEngine.Object.Instantiate(modifier);
+                cloneModifier.hideFlags = HideFlags.DontSave;
                 clone.modifiers.Add(cloneModifier);
             }
 
