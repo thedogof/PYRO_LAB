@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858d3a1d88a4c70a52d429abe5537b4, type: 3}
+  m_Name: EconomyBalance
+  m_EditorClassIdentifier: 
+  scoreToCurrency: 3
+  tiers:
+  - id: T1
+    displayName: Tier 1 - Starter
+    requiredScore: 0
+    requiredFunds: 0
+    paperOptions:
+    - {fileID: 11400000, guid: 2a1894f818a44924806397eb7854e916, type: 2}
+    fuseOptions:
+    - {fileID: 11400000, guid: 354cd853b9f64e7cb7756bf5da49241d, type: 2}
+    shellOptions:
+    - {fileID: 11400000, guid: 53dedb0c7b814e8591c9453cbe055503, type: 2}
+    starOptions:
+    - {fileID: 11400000, guid: 56515a661a5546d39ab1695d8c781676, type: 2}
+    burstOptions:
+    - {fileID: 11400000, guid: 87f1f461e23d43758f77b3216ed0bf57, type: 2}
+    timingOptions:
+    - {fileID: 11400000, guid: 8f339c823aed49628438db693d2d2acc, type: 2}
+  - id: T2
+    displayName: Tier 2 - Advanced
+    requiredScore: 120
+    requiredFunds: 1000
+    paperOptions:
+    - {fileID: 11400000, guid: eecc7696a3f04d6b95c3c56ff7879665, type: 2}
+    fuseOptions:
+    - {fileID: 11400000, guid: e5a2883f0dd742e496bc4cbdc125ae49, type: 2}
+    shellOptions:
+    - {fileID: 11400000, guid: 897ad09134ec432eb5379aaca43a0bc7, type: 2}
+    starOptions:
+    - {fileID: 11400000, guid: 1608d71e2c154dd9bac2370ab33ed846, type: 2}
+    - {fileID: 11400000, guid: 02929ab9b09142ef85239307fc2783ef, type: 2}
+    burstOptions:
+    - {fileID: 11400000, guid: afd7c6afb3d74e06acbc2ac9dbe8b738, type: 2}
+    timingOptions:
+    - {fileID: 11400000, guid: 8f339c823aed49628438db693d2d2acc, type: 2}
+  - id: T3
+    displayName: Tier 3 - Artisan
+    requiredScore: 300
+    requiredFunds: 3000
+    paperOptions:
+    - {fileID: 11400000, guid: 6045c63b7efd402aa0b667947b7ea505, type: 2}
+    fuseOptions:
+    - {fileID: 11400000, guid: d0e24391e1af455ab64c1ec165d4b470, type: 2}
+    shellOptions:
+    - {fileID: 11400000, guid: e7b4cd70e7384459b98d150e7ddf636c, type: 2}
+    starOptions:
+    - {fileID: 11400000, guid: 1989caa38b824b338a68b313fb08d9db, type: 2}
+    - {fileID: 11400000, guid: 099d4e8b7ad841e99a648749551112a5, type: 2}
+    burstOptions:
+    - {fileID: 11400000, guid: d66d21c0a77843e19d8cca39df9152b2, type: 2}
+    timingOptions:
+    - {fileID: 11400000, guid: 8f339c823aed49628438db693d2d2acc, type: 2}

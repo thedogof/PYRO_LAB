@@ -298,7 +298,7 @@ namespace PyroLab.Fireworks.Editor
                     evt.time = EditorGUILayout.Slider("Normalized Time", evt.time, 0f, 1f);
                     evt.action = (TimingAction)EditorGUILayout.EnumPopup("Action", evt.action);
                     evt.layerIndex = EditorGUILayout.IntSlider("Layer", evt.layerIndex, 0, Mathf.Max(0, recipe.layers.Count - 1));
-                    if (evt.action == TimingAction.TriggerModifier)
+                    if (evt.action == TimingAction.ColorShift || evt.action == TimingAction.StrobeToggle)
                     {
                         int modifierCount = recipe.layers.Count == 0 ? 0 : recipe.layers[Mathf.Clamp(evt.layerIndex, 0, recipe.layers.Count - 1)].modifiers.Count;
                         evt.modifierIndex = EditorGUILayout.IntSlider("Modifier", evt.modifierIndex, 0, Mathf.Max(0, modifierCount - 1));

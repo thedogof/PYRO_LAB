@@ -274,8 +274,11 @@ namespace PyroLab.Fireworks
                 case TimingAction.Split:
                     TriggerSplit(runtime, evt);
                     break;
-                case TimingAction.TriggerModifier:
-                    TriggerModifier(runtime, evt);
+                case TimingAction.ColorShift:
+                    TriggerModifier<ColorShiftModifier>(runtime, evt);
+                    break;
+                case TimingAction.StrobeToggle:
+                    TriggerModifier<StrobeModifier>(runtime, evt, toggle: true);
                     break;
             }
         }
@@ -308,15 +311,21 @@ namespace PyroLab.Fireworks
             }
         }
 
-        private void TriggerModifier(LayerRuntimeData runtime, TimingEvent evt)
+        private void TriggerModifier<T>(LayerRuntimeData runtime, TimingEvent evt, bool toggle = false)
+            where T : VisualModifier
         {
-            if (evt.modifierIndex < 0 || evt.modifierIndex >= runtime.Modifiers.Length)
+            var modifier = runtime.GetModifier<T>(evt.modifierIndex);
+            if (modifier == null)
             {
                 return;
             }
 
-            var modifier = runtime.Modifiers[evt.modifierIndex];
-            modifier?.OnTimingEvent(burstSystem, runtime.Layer, evt);
+            if (toggle)
+            {
+                modifier.isEnabled = !modifier.isEnabled;
+            }
+
+            modifier.OnTimingEvent(burstSystem, runtime.Layer, evt);
         }
 
         private void UpdateLight(float normalized)
@@ -353,6 +362,19 @@ namespace PyroLab.Fireworks
 
             public T GetModifier<T>() where T : VisualModifier
             {
+                return GetModifier<T>(-1);
+            }
+
+            public T GetModifier<T>(int preferredIndex) where T : VisualModifier
+            {
+                if (preferredIndex >= 0 && preferredIndex < Modifiers.Length)
+                {
+                    if (Modifiers[preferredIndex] is T targeted)
+                    {
+                        return targeted;
+                    }
+                }
+
                 foreach (var modifier in Modifiers)
                 {
                     if (modifier is T typed)
