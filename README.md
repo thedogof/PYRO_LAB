@@ -5,27 +5,43 @@
 PYRO_LAB 是一個以 Unity（建議 2022 LTS + Universal Render Pipeline）打造的純視覺煙火模擬原型。透過 ScriptableObject、粒子系統與數學函式，開發者可以調整各種參數，實驗日本圓形煙火風格的外觀與動態，用於遊戲或互動體驗。
 
 ## ✨ 特色
-- **FireworkRecipe ScriptableObject**：集中管理升空速度、引信時間、爆炸模式、顏色漸層、大小曲線、HDR 強度等視覺參數。
-- **FireworkLauncher 組件**：依據配方驅動升空與爆炸兩個粒子系統，並提供 `Launch()` / `ResetAndLaunch()` API 方便重複播放。
-- **FireworkBurst 數學取樣**：提供球形、柳枝、環形等向量生成函式，安全地以程式化方式模擬煙火星粒分佈。
-- **JSON 匯入／匯出**：使用者可將視覺參數保存為 JSON 檔案，便於分享與版本管理。
-- **Demo Scene**：展示至少三種視覺模式（Peony、Willow、Ring），可在場景中按鍵切換。
+- **模組化 FireworkRecipe**：以 ScriptableObject 描述多層（Layer）煙火結構，支援拖尾、閃爍、變色、重力拖曳、分裂等 Modifier，所有內容皆為純視覺行為參數。
+- **BurstPatterns 幾何取樣**：提供球殼、柳枝、環形、棕櫚、Pistil Ring、Layered Shell、2D 投影等數學採樣函式，僅生成方向向量與比例資訊。
+- **TimingTrack 事件**：以 0~1 正規化時間定義二段爆、層級再觸發、Modifier 事件，快速搭建複合視覺節奏。
+- **Recipe Composer GUI**：改版 Inspector 具備層級排序、Modifier 選單、Timing 編輯與預覽，並保留 JSON 匯入／匯出。
+- **Demo_Modular 場景**：提供至少六組預設視覺配方，可透過鍵盤快速切換並示範 Recipe Composer 操作。
 
 ## 🗂 專案結構
 ```
 Assets/
   _Core/
-    FireworkRecipe.cs
-    FireworkLauncher.cs
-    FireworkBurst.cs
-    FireworkSpawner.cs
-    FireworkPresetExporter.cs
+    Data/
+      FireworkRecipe.cs
+      FireworkLayer.cs
+      TimingTrack.cs
+      GradientWrapper.cs
+      VisualModifier.cs
+      Modifiers/
+        ColorShiftModifier.cs
+        FadeModifier.cs
+        GravityDragModifier.cs
+        SplitModifier.cs
+        StrobeModifier.cs
+        TrailModifier.cs
+        TwinkleModifier.cs
+    Runtime/
+      BurstPatterns.cs
+      FireworkBurst.cs
+      FireworkLauncher.cs
+      FireworkSpawner.cs
     Editor/
       FireworkRecipeEditor.cs
+      JsonPresetExporter.cs
   Prefabs/
     PF_FireworkLauncher.prefab
   Scenes/
-    Demo.unity
+    Demo_Modular.unity
+    Demo.unity (legacy)
 ProjectSettings/
 README.md
 ```
@@ -36,14 +52,18 @@ README.md
 
 ## 🚀 快速開始
 1. 以 Unity Hub 匯入專案資料夾並使用 Unity 2022.3 LTS（URP）開啟。
-2. 在 `Assets/Scenes/Demo.unity` 中開啟 Demo 場景。
-3. 播放場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看三種煙火模式。
+2. 在 `Assets/Scenes/Demo_Modular.unity` 中開啟 Demo 場景（保留舊 Demo 作為對照）。
+3. 播放場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看多組預設煙火組合；鍵盤 `1~6` 可切換推薦配方。
 
 ## 🎨 建立自訂配方
-1. 於 Project 視窗中右鍵 → **Create → PyroLab → Firework Recipe**。
-2. 在 Inspector 中調整參數，例如：星火數量、爆炸模式、顏色漸層、大小曲線等。
-3. 使用 Inspector 內建的 **Preview Burst** 按鈕，即可在編輯器模式快速預覽效果。
-4. 透過 **Export JSON** / **Import JSON** 按鈕保存或載入視覺參數。
+1. 於 Project 視窗中右鍵 → **Create → PYRO → Firework Recipe**。
+2. 在 Inspector 的 **Recipe Composer** 中：
+   - 調整 Global 區塊（尺寸、預期高度、Fuse 時間、顏色漸層、HDR 強度）。
+   - 依需求新增多個 Layer，為每層選擇幾何 Pattern、設定速度範圍與顏色漸層。
+   - 透過 **Add Modifier** 選單套用拖尾、Strobe、Color Shift、Fade、Gravity Drag、Split、Twinkle 等純視覺效果。
+   - 在 Timing Track 新增事件，組合二段爆或指定層的再觸發節奏。
+3. 使用 **Preview** 按鈕於編輯器模式播放視覺模擬。
+4. 透過 **Export JSON** / **Import JSON** 保存或載入純文字 Recipe 設定。
 
 ## 📦 JSON 匯出／匯入
 - 匯出：於 Inspector 點擊 **Export JSON**，指定路徑後即可產生純文字 JSON。
@@ -51,9 +71,9 @@ README.md
 
 ## 🧪 測試（建議）
 專案提供 C# 腳本與粒子設定，建議在合併 PR 前於本地使用 Unity Editor 測試以下項目：
-- Demo 場景中是否能播放三種煙火模式。
-- FireworkRecipe ScriptableObject 是否能正確匯入／匯出 JSON。
-- Inspector 的 Preview 功能是否正常觸發粒子播放。
+- Demo_Modular 場景中是否能播放至少六種煙火組合並支援鍵盤切換。
+- Recipe Composer 是否能增刪 Layer、Modifier 與 Timing 事件並即時預覽。
+- FireworkRecipe ScriptableObject 是否能正確匯入／匯出 JSON（匯出→刪除→重新匯入→結果一致）。
 
 ## 🤝 貢獻
 歡迎以功能分支的方式提交 Pull Request。請遵守安全方針：
