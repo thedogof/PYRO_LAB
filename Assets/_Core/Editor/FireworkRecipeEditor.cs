@@ -19,8 +19,6 @@ namespace PyroLab.Fireworks.Editor
         private ParticleSystem previewBurst;
         private Light previewLight;
 
-        private const string DefaultExportFileName = "FireworkRecipe.json";
-
         private void OnEnable()
         {
             modifierTypes = GetModifierTypes();
@@ -392,24 +390,26 @@ namespace PyroLab.Fireworks.Editor
 
         private void ExportJson(FireworkRecipe recipe)
         {
-            string path = EditorUtility.SaveFilePanel("Export Firework Recipe", Application.dataPath, DefaultExportFileName, "json");
-            if (string.IsNullOrEmpty(path))
+            try
             {
-                return;
+                RecipeJsonUtility.ExportWithDialog(recipe);
             }
-
-            JsonPresetExporter.Export(recipe, path);
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
         }
 
         private void ImportJson(FireworkRecipe recipe)
         {
-            string path = EditorUtility.OpenFilePanel("Import Firework Recipe", Application.dataPath, "json");
-            if (string.IsNullOrEmpty(path))
+            try
             {
-                return;
+                RecipeJsonUtility.OverwriteFromJsonWithDialog(recipe);
             }
-
-            JsonPresetExporter.Import(recipe, path);
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+            }
         }
 
         private void EnsurePreviewSystems()

@@ -8,7 +8,7 @@ PYRO_LAB 是一個以 Unity（建議 2022 LTS + Universal Render Pipeline）打�
 - **模組化 FireworkRecipe**：以 ScriptableObject 描述多層（Layer）煙火結構，支援拖尾、閃爍、變色、重力拖曳、分裂等 Modifier，所有內容皆為純視覺行為參數。
 - **BurstPatterns 幾何取樣**：提供球殼、柳枝、環形、棕櫚、Pistil Ring、Layered Shell、2D 投影等數學採樣函式，僅生成方向向量與比例資訊。
 - **TimingTrack 事件**：以 0~1 正規化時間定義二段爆、層級再觸發、Modifier 事件，快速搭建複合視覺節奏。
-- **Recipe Composer GUI**：改版 Inspector 具備層級排序、Modifier 選單、Timing 編輯與預覽，並保留 JSON 匯入／匯出。
+- **Recipe Composer GUI & Editor Window**：改版 Inspector 與專屬 **Recipe Editor** 視窗具備層級拖拉排序、Modifier 選單、Timing 編輯與預覽，並保留 JSON 匯入／匯出。
 - **Demo_Modular 場景**：提供至少六組預設視覺配方，可透過鍵盤快速切換並示範 Recipe Composer 操作。
 
 ## 🗂 專案結構
@@ -36,9 +36,17 @@ Assets/
       FireworkSpawner.cs
     Editor/
       FireworkRecipeEditor.cs
+      RecipeEditorWindow.cs
+      RecipeJsonUtility.cs
       JsonPresetExporter.cs
+    Data/
+      RecipeCatalog.asset
   Prefabs/
     PF_FireworkLauncher.prefab
+  Recipes/
+    (以 ScriptableObject 儲存的純視覺配方)
+  RecipesJSON/
+    (透過工具匯出的 JSON 設定)
   Scenes/
     Demo_Modular.unity
     Demo.unity (legacy)
@@ -56,14 +64,21 @@ README.md
 3. 播放場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看多組預設煙火組合；鍵盤 `1~6` 可切換推薦配方。
 
 ## 🎨 建立自訂配方
-1. 於 Project 視窗中右鍵 → **Create → PYRO → Firework Recipe**。
-2. 在 Inspector 的 **Recipe Composer** 中：
+1. 於 Project 視窗中右鍵 → **Create → PYRO → Firework Recipe**，或透過選單 **PYRO → Recipe Editor** 建立並管理配方。
+2. 在 Inspector 的 **Recipe Composer** 或 Recipe Editor 視窗中：
    - 調整 Global 區塊（尺寸、預期高度、Fuse 時間、顏色漸層、HDR 強度）。
    - 依需求新增多個 Layer，為每層選擇幾何 Pattern、設定速度範圍與顏色漸層。
    - 透過 **Add Modifier** 選單套用拖尾、Strobe、Color Shift、Fade、Gravity Drag、Split、Twinkle 等純視覺效果。
    - 在 Timing Track 新增事件，組合二段爆或指定層的再觸發節奏。
 3. 使用 **Preview** 按鈕於編輯器模式播放視覺模擬。
-4. 透過 **Export JSON** / **Import JSON** 保存或載入純文字 Recipe 設定。
+4. 使用 **Preview** 或 Recipe Editor 視窗右上角的 Preview 按鈕，在不進 Play 的狀態下一次預覽。
+5. 透過 **Export JSON** / **Import JSON** 保存或載入純文字 Recipe 設定。所有匯出檔案會儲存在 `Assets/RecipesJSON/`，可再從該資料夾匯入並自動建立新的 ScriptableObject。
+
+## 📚 Recipe Catalog 與 Demo UI
+- 在 `Assets/_Core/Data/RecipeCatalog.asset` 維護配方清單，可直接拖曳 `FireworkRecipe` 進入清單並於專案內快速重複使用。
+- 執行 Demo 場景時，畫面左上角會出現簡易的 **Recipe Catalog** 視窗，可從資料庫中選擇配方、立即套用至 `FireworkSpawner` 並觸發一次發射。
+- 需要更多配方時，可將新的 `.asset` 放入 `Assets/Recipes/`，再於 Catalog 中登錄即可。
+- 匯出→刪除 `.asset`→從 JSON 匯入後，視覺結果將與原始設定一致（允許極微小數值誤差）。
 
 ## 🧭 Phase 2 擴充藍圖
 - 以日本花火風格為靈感，將「紙皮層數、星粒排列、導火延遲、特效粉末」抽象為純數值參數。
