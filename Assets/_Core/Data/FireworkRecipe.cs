@@ -87,6 +87,12 @@ namespace PyroLab.Fireworks
             public float spreadJitter;
             public float gravityFactor;
             public float trailLengthScale;
+            public bool hasLaunchVariance;
+            public bool hasBurstSymmetry;
+            public bool hasAngularSpread;
+            public bool hasSpreadJitter;
+            public bool hasGravityFactor;
+            public bool hasTrailLengthScale;
             public List<FireworkLayerDto> layers;
             public TimingTrack timing;
 
@@ -106,6 +112,12 @@ namespace PyroLab.Fireworks
                     spreadJitter = recipe.spreadJitter,
                     gravityFactor = recipe.gravityFactor,
                     trailLengthScale = recipe.trailLengthScale,
+                    hasLaunchVariance = true,
+                    hasBurstSymmetry = true,
+                    hasAngularSpread = true,
+                    hasSpreadJitter = true,
+                    hasGravityFactor = true,
+                    hasTrailLengthScale = true,
                     layers = new List<FireworkLayerDto>(),
                     timing = recipe.timing != null ? recipe.timing.Clone() : new TimingTrack()
                 };
@@ -126,12 +138,24 @@ namespace PyroLab.Fireworks
                 recipe.sizeOverLifetime = sizeOverLifetime ?? AnimationCurve.Linear(0f, 1f, 1f, 0.2f);
                 recipe.colorOverLifetime = colorOverLifetime?.ToGradient() ?? FireworkLayer.DefaultLayerGradient();
                 recipe.hdrIntensity = hdrIntensity;
-                recipe.launchVariance = Mathf.Approximately(launchVariance, 0f) ? 0.2f : launchVariance;
-                recipe.burstSymmetry = Mathf.Approximately(burstSymmetry, 0f) ? 0.85f : burstSymmetry;
-                recipe.angularSpread = Mathf.Approximately(angularSpread, 0f) ? 4f : angularSpread;
-                recipe.spreadJitter = Mathf.Approximately(spreadJitter, 0f) ? 0.05f : spreadJitter;
-                recipe.gravityFactor = Mathf.Approximately(gravityFactor, 0f) ? 0.2f : gravityFactor;
-                recipe.trailLengthScale = Mathf.Approximately(trailLengthScale, 0f) ? 3.5f : trailLengthScale;
+                recipe.launchVariance = hasLaunchVariance
+                    ? launchVariance
+                    : (Mathf.Approximately(launchVariance, 0f) ? 0.2f : launchVariance);
+                recipe.burstSymmetry = hasBurstSymmetry
+                    ? burstSymmetry
+                    : (Mathf.Approximately(burstSymmetry, 0f) ? 0.85f : burstSymmetry);
+                recipe.angularSpread = hasAngularSpread
+                    ? angularSpread
+                    : (Mathf.Approximately(angularSpread, 0f) ? 4f : angularSpread);
+                recipe.spreadJitter = hasSpreadJitter
+                    ? spreadJitter
+                    : (Mathf.Approximately(spreadJitter, 0f) ? 0.05f : spreadJitter);
+                recipe.gravityFactor = hasGravityFactor
+                    ? gravityFactor
+                    : (Mathf.Approximately(gravityFactor, 0f) ? 0.2f : gravityFactor);
+                recipe.trailLengthScale = hasTrailLengthScale
+                    ? trailLengthScale
+                    : (Mathf.Approximately(trailLengthScale, 0f) ? 3.5f : trailLengthScale);
 
                 recipe.layers ??= new List<FireworkLayer>();
                 recipe.layers.Clear();
