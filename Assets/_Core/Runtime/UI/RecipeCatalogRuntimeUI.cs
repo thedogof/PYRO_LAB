@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace PyroLab.Fireworks
 {
@@ -30,12 +27,6 @@ namespace PyroLab.Fireworks
                     {
                         catalog = catalogs[0];
                     }
-#if UNITY_EDITOR
-                    if (catalog == null)
-                    {
-                        catalog = AssetDatabase.LoadAssetAtPath<RecipeCatalog>("Assets/_Core/Data/RecipeCatalog.asset");
-                    }
-#endif
                 }
             }
 
