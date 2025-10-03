@@ -8,24 +8,33 @@ namespace PyroLab.Fireworks
     {
         SubBurst,
         Split,
-        TriggerModifier
+        ColorShift,
+        StrobeToggle
     }
 
     [Serializable]
     public class TimingEvent
     {
+        [Tooltip("Label used by the workshop UI. Purely descriptive.")]
         public string name = "Event";
+
+        [Tooltip("Normalized time within the burst (0 = launch, 1 = end).")]
         [Range(0f, 1f)] public float time = 0.5f;
+
+        [Tooltip("Visual-only action performed when the event triggers.")]
         public TimingAction action = TimingAction.SubBurst;
-        [Tooltip("Layer index that the action targets.")]
+
+        [Tooltip("Layer index the action targets (purely visual).")]
         public int layerIndex = 0;
-        [Tooltip("Optional modifier index that will be toggled or triggered.")]
+
+        [Tooltip("Optional modifier index for toggle actions (visual only).")]
         public int modifierIndex = 0;
     }
 
     [Serializable]
     public class TimingTrack
     {
+        [Tooltip("Ordered list of normalized timing events used by workshop recipes.")]
         public List<TimingEvent> events = new();
 
         public TimingTrack Clone()

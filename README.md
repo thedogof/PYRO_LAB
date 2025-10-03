@@ -8,7 +8,9 @@ PYRO_LAB 是一個以 Unity（建議 2022 LTS + Universal Render Pipeline）打�
 - **模組化 FireworkRecipe**：以 ScriptableObject 描述多層（Layer）煙火結構，支援拖尾、閃爍、變色、重力拖曳、分裂等 Modifier，所有內容皆為純視覺行為參數。
 - **BurstPatterns 幾何取樣**：提供球殼、柳枝、環形、棕櫚、Pistil Ring、Layered Shell、2D 投影等數學採樣函式，僅生成方向向量與比例資訊。
 - **TimingTrack 事件**：以 0~1 正規化時間定義二段爆、層級再觸發、Modifier 事件，快速搭建複合視覺節奏。
-- **Recipe Composer GUI & Editor Window**：改版 Inspector 與專屬 **Recipe Editor** 視窗具備層級拖拉排序、Modifier 選單、Timing 編輯與預覽，並保留 JSON 匯入／匯出。
+- **Recipe Composer GUI & Editor Window**：專屬 **Recipe Editor** 視窗與改版 Inspector，具備層級拖拉排序、Modifier 選單、Timing 編輯與預覽，並支援 JSON 匯入／匯出。
+- **Workshop 材料系統**：新增 Paper/Fuse/Shell/StarCompound/BurstCore 等純視覺 ScriptableObject，搭配 EconomyBalance 解鎖與成本計算。
+- **Demo_Workshop 場景**：示範 Tier 1 預設組合、預估得分與成本結算流程，並提供 JSON 匯出／匯入入口。
 - **Demo_Modular 場景**：提供至少六組預設視覺配方，可透過鍵盤快速切換並示範 Recipe Composer 操作。
 
 ## 🗂 專案結構
@@ -49,6 +51,7 @@ Assets/
     (透過工具匯出的 JSON 設定)
   Scenes/
     Demo_Modular.unity
+    Demo_Workshop.unity
     Demo.unity (legacy)
 ProjectSettings/
 README.md
@@ -60,8 +63,12 @@ README.md
 
 ## 🚀 快速開始
 1. 以 Unity Hub 匯入專案資料夾並使用 Unity 2022.3 LTS（URP）開啟。
-2. 在 `Assets/Scenes/Demo_Modular.unity` 中開啟 Demo 場景（保留舊 Demo 作為對照）。
-3. 播放場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看多組預設煙火組合；鍵盤 `1~6` 可切換推薦配方。
+2. 在 `Assets/Scenes/Demo_Modular.unity` 中開啟 Modular Demo，或在 `Assets/Scenes/Demo_Workshop.unity` 進入工作坊流程。
+3. 播放 Modular 場景後，使用 `FireworkSpawner` 監控物件，以空白鍵或等待自動輪播即可觀看多組預設煙火組合；鍵盤 `1~6` 可切換推薦配方。
+4. 在 Demo_Workshop 中透過 Inspector 觀察 `WorkshopManager` 的材料選擇、Tier 預設與成本／得分估算，使用 **Export / Import JSON** 按鈕保存設定。
+
+## 📚 Workshop 經濟與材料
+- 參考 [`docs/workshop-economy.md`](docs/workshop-economy.md) 了解 Tier 成本、預設材料與解鎖條件。
 
 ## 🎨 建立自訂配方
 1. 於 Project 視窗中右鍵 → **Create → PYRO → Firework Recipe**，或透過選單 **PYRO → Recipe Editor** 建立並管理配方。

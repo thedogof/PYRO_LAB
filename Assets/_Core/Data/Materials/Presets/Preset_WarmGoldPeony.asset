@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890b7973d43a4df99245ef1c682ebf2c, type: 3}
+  m_Name: Preset_WarmGoldPeony
+  m_EditorClassIdentifier: 
+  displayName: Warm Gold Peony
+  papers:
+  - {fileID: 11400000, guid: 2a1894f818a44924806397eb7854e916, type: 2}
+  fuse: {fileID: 11400000, guid: 354cd853b9f64e7cb7756bf5da49241d, type: 2}
+  shell: {fileID: 11400000, guid: 53dedb0c7b814e8591c9453cbe055503, type: 2}
+  starCompounds:
+  - {fileID: 11400000, guid: 56515a661a5546d39ab1695d8c781676, type: 2}
+  burstCore: {fileID: 11400000, guid: 87f1f461e23d43758f77b3216ed0bf57, type: 2}
+  timing: {fileID: 11400000, guid: 8f339c823aed49628438db693d2d2acc, type: 2}

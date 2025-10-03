@@ -15,6 +15,25 @@ namespace PyroLab.Fireworks
         public Gradient colorOverLifetime = FireworkLayer.DefaultLayerGradient();
         [Min(0f)] public float hdrIntensity = 2f;
 
+        [Header("Burst Dynamics")]
+        [Tooltip("Visual launch variance purely for workshop previews.")]
+        [Range(0f, 1f)] public float launchVariance = 0.2f;
+
+        [Tooltip("Normalized burst symmetry (1 = perfectly even).")]
+        [Range(0f, 1f)] public float burstSymmetry = 0.85f;
+
+        [Tooltip("Angular spread in degrees representing shell tightness.")]
+        [Range(1f, 12f)] public float angularSpread = 4f;
+
+        [Tooltip("Random spread jitter applied when seeding particles.")]
+        [Range(0f, 0.2f)] public float spreadJitter = 0.05f;
+
+        [Tooltip("Gravity factor fed into gravity drag modifier (visual only).")]
+        [Range(0.05f, 0.5f)] public float gravityFactor = 0.2f;
+
+        [Tooltip("Base trail length scale applied across generated layers.")]
+        [Min(0f)] public float trailLengthScale = 3.5f;
+
         [Header("Composition")]
         public List<FireworkLayer> layers = new();
         public TimingTrack timing = new();
@@ -62,6 +81,12 @@ namespace PyroLab.Fireworks
             public AnimationCurve sizeOverLifetime;
             public GradientWrapper colorOverLifetime;
             public float hdrIntensity;
+            public float launchVariance;
+            public float burstSymmetry;
+            public float angularSpread;
+            public float spreadJitter;
+            public float gravityFactor;
+            public float trailLengthScale;
             public List<FireworkLayerDto> layers;
             public TimingTrack timing;
 
@@ -75,6 +100,12 @@ namespace PyroLab.Fireworks
                     sizeOverLifetime = recipe.sizeOverLifetime,
                     colorOverLifetime = GradientWrapper.FromGradient(recipe.colorOverLifetime),
                     hdrIntensity = recipe.hdrIntensity,
+                    launchVariance = recipe.launchVariance,
+                    burstSymmetry = recipe.burstSymmetry,
+                    angularSpread = recipe.angularSpread,
+                    spreadJitter = recipe.spreadJitter,
+                    gravityFactor = recipe.gravityFactor,
+                    trailLengthScale = recipe.trailLengthScale,
                     layers = new List<FireworkLayerDto>(),
                     timing = recipe.timing != null ? recipe.timing.Clone() : new TimingTrack()
                 };
@@ -95,6 +126,12 @@ namespace PyroLab.Fireworks
                 recipe.sizeOverLifetime = sizeOverLifetime ?? AnimationCurve.Linear(0f, 1f, 1f, 0.2f);
                 recipe.colorOverLifetime = colorOverLifetime?.ToGradient() ?? FireworkLayer.DefaultLayerGradient();
                 recipe.hdrIntensity = hdrIntensity;
+                recipe.launchVariance = Mathf.Approximately(launchVariance, 0f) ? 0.2f : launchVariance;
+                recipe.burstSymmetry = Mathf.Approximately(burstSymmetry, 0f) ? 0.85f : burstSymmetry;
+                recipe.angularSpread = Mathf.Approximately(angularSpread, 0f) ? 4f : angularSpread;
+                recipe.spreadJitter = Mathf.Approximately(spreadJitter, 0f) ? 0.05f : spreadJitter;
+                recipe.gravityFactor = Mathf.Approximately(gravityFactor, 0f) ? 0.2f : gravityFactor;
+                recipe.trailLengthScale = Mathf.Approximately(trailLengthScale, 0f) ? 3.5f : trailLengthScale;
 
                 recipe.layers ??= new List<FireworkLayer>();
                 recipe.layers.Clear();
