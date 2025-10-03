@@ -26,7 +26,7 @@ namespace PyroLab.Fireworks
                 throw new ArgumentNullException(nameof(target));
             }
 
-            float paperCount = Mathf.Max(1, papers?.Count ?? 0);
+            float paperCount = papers?.Count ?? 0;
             float totalPaperLayers = 0f;
             float wrapSum = 0f;
             float thicknessSum = 0f;
