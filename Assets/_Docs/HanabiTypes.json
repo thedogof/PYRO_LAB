@@ -1,0 +1,183 @@
+{
+  "$schema": "https://example.com/pyro_lab/hanabi_types.schema.json",
+  "version": "1.0",
+  "types": [
+    {
+      "id": "peony",
+      "names": { "ja": "牡丹", "romaji": "Botan", "en": "Peony", "zh": "牡丹" },
+      "tags": ["sphere", "classic"],
+      "shortDesc": "經典球形綻放，純淨明亮、無明顯拖尾。",
+      "cultureNotes": [
+        "在日本花火中屬於最基本的球形樣式，常用作多層結構的外層花瓣視覺。"
+      ],
+      "visualMapping": {
+        "pattern": "Peony",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 280,
+              "burstSpeedMin": 8.0,
+              "burstSpeedMax": 12.0,
+              "spread": 0.02,
+              "hdrIntensity": 2.2,
+              "lifetime": 1.8,
+              "colorGradientRef": "WarmWhite",
+              "modifiers": ["Fade(slow)"]
+            },
+            "notes": "乾淨球殼，無拖尾；作為其它樣式的基準。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 1, "minReputation": 0, "costTier": "T1" },
+      "references": [
+        { "title": "Wikipedia 花火（文化條目）", "url": "https://example.org/wiki/hanabi" }
+      ]
+    },
+    {
+      "id": "chrysanthemum",
+      "names": { "ja": "菊", "romaji": "Kiku", "en": "Chrysanthemum", "zh": "菊花" },
+      "tags": ["sphere", "petals"],
+      "shortDesc": "球形放射，尾端微亮點，似花瓣層層外展。",
+      "cultureNotes": [
+        "常見於大型花火表演，對稱性與均勻度高，帶莊重與華麗感。"
+      ],
+      "visualMapping": {
+        "pattern": "Chrysanthemum",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 360,
+              "burstSpeedMin": 8.5,
+              "burstSpeedMax": 13.0,
+              "spread": 0.03,
+              "hdrIntensity": 2.4,
+              "lifetime": 2.0,
+              "colorGradientRef": "AmberGold",
+              "modifiers": ["Fade(slow)", "Trail(1.2)"]
+            },
+            "notes": "輕微拖尾＋尾端亮點；可加 Pistil 層做『芯入菊』。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 2, "minReputation": 50, "costTier": "T2" },
+      "references": [
+        { "title": "Hanabi 展示活動官網", "url": "https://example.org/festival" }
+      ]
+    },
+    {
+      "id": "willow",
+      "names": { "ja": "柳", "romaji": "Yanagi", "en": "Willow", "zh": "柳" },
+      "tags": ["long-trail", "gravity", "gold"],
+      "shortDesc": "長拖尾向下垂落，滿幕金柳雨般的視覺。",
+      "cultureNotes": [
+        "常見於日本夏祭壓軸，呈現悠長的下墜拖尾與滿版金色。"
+      ],
+      "visualMapping": {
+        "pattern": "Willow",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 420,
+              "burstSpeedMin": 7.0,
+              "burstSpeedMax": 10.0,
+              "spread": 0.02,
+              "hdrIntensity": 2.6,
+              "lifetime": 2.6,
+              "colorGradientRef": "Gold",
+              "modifiers": ["Trail(5.0)", "GravityDrag(0.35)", "Fade(verySlow)"]
+            },
+            "notes": "拖尾與重力感是關鍵；可搭外層覆蓋形成錦冠感。"
+          },
+          {
+            "engine": "vfx",
+            "recipeHint": {
+              "starCount": 10000,
+              "burstRadius": 18.0,
+              "drag": 0.35,
+              "gravityFactor": 0.4,
+              "tailLength": 5.0,
+              "strobeFrequency": 0.0,
+              "colorGradientRef": "Gold"
+            },
+            "notes": "VFX Graph 版測試大規模 GPU 粒子。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 3, "minReputation": 120, "costTier": "T2" },
+      "references": [
+        { "title": "大曲花火介紹頁（文化）", "url": "https://example.org/oomagari" }
+      ]
+    },
+    {
+      "id": "ring_pistil",
+      "names": { "ja": "芯入・環", "romaji": "Shin-iri / Ring", "en": "Ring + Pistil", "zh": "環形＋芯入" },
+      "tags": ["ring", "pistil", "dual-layer"],
+      "shortDesc": "外環與中心花芯同時展現，對比鮮明。",
+      "cultureNotes": [
+        "作為造型與層次的練習題，常出現在評比項目中（強調對稱與時序）。"
+      ],
+      "visualMapping": {
+        "pattern": "Layered",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 420,
+              "burstSpeedMin": 8.0,
+              "burstSpeedMax": 12.0,
+              "spread": 0.02,
+              "hdrIntensity": 2.8,
+              "lifetime": 2.0,
+              "colorGradientRef": "WhiteGold",
+              "modifiers": ["Fade(slow)"],
+              "timing": [
+                { "time": 0.0, "action": "EnableLayer:Ring" },
+                { "time": 0.0, "action": "EnableLayer:Pistil" }
+              ]
+            },
+            "notes": "外層用 Ring 分佈，內層用 Pistil；兩層同時或微延遲。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 3, "minReputation": 160, "costTier": "T3" },
+      "references": [
+        { "title": "花火樣式一覽（文化介紹）", "url": "https://example.org/hanabi-styles" }
+      ]
+    },
+    {
+      "id": "novelty_heart",
+      "names": { "ja": "型物（ハート）", "romaji": "Kata-mono (Heart)", "en": "Novelty (Heart)", "zh": "型物（愛心）" },
+      "tags": ["projected2d", "novelty", "festival"],
+      "shortDesc": "投影圖案成心形，具節慶與表演特色。",
+      "cultureNotes": [
+        "型物花火在祭典或主題活動中常見，用於營造趣味與驚喜。"
+      ],
+      "visualMapping": {
+        "pattern": "Projected2D",
+        "recommendedPresets": [
+          {
+            "engine": "vfx",
+            "recipeHint": {
+              "starCount": 6000,
+              "burstRadius": 12.0,
+              "drag": 0.15,
+              "gravityFactor": 0.15,
+              "tailLength": 1.2,
+              "strobeFrequency": 0.0,
+              "colorGradientRef": "RosePink",
+              "maskRef": "HeartMask"
+            },
+            "notes": "使用 2D mask 投影到球殼；低重力保形。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 4, "minReputation": 240, "costTier": "T3" },
+      "references": [
+        { "title": "花火節慶活動（文化）", "url": "https://example.org/festival-heart" }
+      ]
+    }
+  ]
+}
