@@ -1,9 +1,10 @@
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
-namespace PyroLab.Fireworks
+namespace PyroLab.Fireworks.Editor
 {
-    public static class FireworkPresetExporter
+    public static class JsonPresetExporter
     {
         public static void Export(FireworkRecipe recipe, string path)
         {
@@ -16,6 +17,7 @@ namespace PyroLab.Fireworks
             string json = recipe.ExportToJson();
             File.WriteAllText(path, json);
             Debug.Log($"Firework preset exported to {path}");
+            AssetDatabase.Refresh();
         }
 
         public static void Import(FireworkRecipe recipe, string path)
@@ -34,6 +36,7 @@ namespace PyroLab.Fireworks
 
             string json = File.ReadAllText(path);
             recipe.ImportFromJson(json);
+            EditorUtility.SetDirty(recipe);
             Debug.Log($"Firework preset imported from {path}");
         }
     }
