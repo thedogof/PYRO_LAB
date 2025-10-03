@@ -1,0 +1,63 @@
+{
+  "recipeName": "Peony",
+  "size": 1.0,
+  "desiredBurstHeight": 80.0,
+  "fuseTime": 2.1,
+  "sizeOverLifetime": {
+    "keys": [
+      { "time": 0.0, "value": 0.0, "inTangent": 0.0, "outTangent": 1.1, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 0.52, "value": 1.0, "inTangent": 0.0, "outTangent": -1.5, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 1.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 }
+    ],
+    "preWrapMode": 1,
+    "postWrapMode": 1
+  },
+  "colorOverLifetime": {
+    "colorKeys": [
+      { "color": { "r": 1.0, "g": 0.45, "b": 0.2, "a": 1.0 }, "time": 0.0 },
+      { "color": { "r": 1.0, "g": 0.82, "b": 0.32, "a": 1.0 }, "time": 1.0 }
+    ],
+    "alphaKeys": [
+      { "alpha": 1.0, "time": 0.0 },
+      { "alpha": 0.0, "time": 1.0 }
+    ]
+  },
+  "hdrIntensity": 2.6,
+  "launchVariance": 0.18,
+  "burstSymmetry": 0.88,
+  "angularSpread": 4.2,
+  "spreadJitter": 0.05,
+  "gravityFactor": 0.2,
+  "trailLengthScale": 3.5,
+  "layers": [
+    {
+      "pattern": 0,
+      "starCount": 280,
+      "speedMin": 6.0,
+      "speedMax": 10.5,
+      "spread": 0.12,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.45, "b": 0.2, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.82, "b": 0.32, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.6,
+      "radius": 1.0,
+      "ringThickness": 0.15,
+      "palmArcCount": 5.0,
+      "palmBend": 0.3,
+      "pistilRadius": 0.35,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.4, 0.75, 1.0 ],
+      "modifiers": []
+    }
+  ],
+  "timing": {
+    "events": []
+  }
+}

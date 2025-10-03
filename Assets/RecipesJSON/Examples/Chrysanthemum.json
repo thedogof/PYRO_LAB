@@ -1,0 +1,94 @@
+{
+  "recipeName": "Chrysanthemum",
+  "size": 1.2,
+  "desiredBurstHeight": 95.0,
+  "fuseTime": 2.4,
+  "sizeOverLifetime": {
+    "keys": [
+      { "time": 0.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.9, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 0.45, "value": 1.05, "inTangent": 0.0, "outTangent": -1.1, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 1.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 }
+    ],
+    "preWrapMode": 1,
+    "postWrapMode": 1
+  },
+  "colorOverLifetime": {
+    "colorKeys": [
+      { "color": { "r": 0.95, "g": 0.55, "b": 0.1, "a": 1.0 }, "time": 0.0 },
+      { "color": { "r": 0.95, "g": 0.8, "b": 0.25, "a": 1.0 }, "time": 1.0 }
+    ],
+    "alphaKeys": [
+      { "alpha": 1.0, "time": 0.0 },
+      { "alpha": 0.0, "time": 1.0 }
+    ]
+  },
+  "hdrIntensity": 2.8,
+  "launchVariance": 0.15,
+  "burstSymmetry": 0.92,
+  "angularSpread": 3.6,
+  "spreadJitter": 0.04,
+  "gravityFactor": 0.22,
+  "trailLengthScale": 3.9,
+  "layers": [
+    {
+      "pattern": 0,
+      "starCount": 240,
+      "speedMin": 6.5,
+      "speedMax": 12.0,
+      "spread": 0.08,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 0.95, "g": 0.55, "b": 0.1, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 0.95, "g": 0.8, "b": 0.25, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.8,
+      "radius": 1.0,
+      "ringThickness": 0.18,
+      "palmArcCount": 6.0,
+      "palmBend": 0.28,
+      "pistilRadius": 0.3,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.4, 0.72, 1.0 ],
+      "modifiers": [
+        {
+          "type": "PyroLab.Fireworks.TwinkleModifier, Assembly-CSharp",
+          "json": "{\n    \"isEnabled\": true,\n    \"twinkleProbability\": 0.35,\n    \"intensityVariance\": 0.45\n}"
+        }
+      ]
+    },
+    {
+      "pattern": 4,
+      "starCount": 120,
+      "speedMin": 4.5,
+      "speedMax": 7.8,
+      "spread": 0.0,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.95, "b": 0.65, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.95, "b": 0.65, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.1,
+      "radius": 0.55,
+      "ringThickness": 0.1,
+      "palmArcCount": 4.0,
+      "palmBend": 0.2,
+      "pistilRadius": 0.2,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.25, 0.4, 0.6 ],
+      "modifiers": []
+    }
+  ],
+  "timing": {
+    "events": []
+  }
+}

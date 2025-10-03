@@ -1,0 +1,89 @@
+{
+  "recipeName": "Coconut",
+  "size": 1.0,
+  "desiredBurstHeight": 85.0,
+  "fuseTime": 2.0,
+  "sizeOverLifetime": {
+    "keys": [
+      { "time": 0.0, "value": 0.1, "inTangent": 0.0, "outTangent": 0.7, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 0.48, "value": 1.0, "inTangent": 0.0, "outTangent": -1.1, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 1.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 }
+    ],
+    "preWrapMode": 1,
+    "postWrapMode": 1
+  },
+  "colorOverLifetime": {
+    "colorKeys": [
+      { "color": { "r": 0.8, "g": 0.95, "b": 1.0, "a": 1.0 }, "time": 0.0 },
+      { "color": { "r": 0.4, "g": 0.75, "b": 1.0, "a": 1.0 }, "time": 1.0 }
+    ],
+    "alphaKeys": [
+      { "alpha": 1.0, "time": 0.0 },
+      { "alpha": 0.0, "time": 1.0 }
+    ]
+  },
+  "hdrIntensity": 2.7,
+  "launchVariance": 0.2,
+  "burstSymmetry": 0.82,
+  "angularSpread": 4.8,
+  "spreadJitter": 0.07,
+  "gravityFactor": 0.18,
+  "trailLengthScale": 3.6,
+  "layers": [
+    {
+      "pattern": 3,
+      "starCount": 260,
+      "speedMin": 6.0,
+      "speedMax": 11.0,
+      "spread": 0.1,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 0.8, "g": 0.95, "b": 1.0, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 0.4, "g": 0.75, "b": 1.0, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.9,
+      "radius": 1.1,
+      "ringThickness": 0.22,
+      "palmArcCount": 7.0,
+      "palmBend": 0.45,
+      "pistilRadius": 0.3,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.3, 0.55, 0.8, 1.0 ],
+      "modifiers": []
+    },
+    {
+      "pattern": 0,
+      "starCount": 120,
+      "speedMin": 5.5,
+      "speedMax": 9.0,
+      "spread": 0.05,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.9, "b": 0.55, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.9, "b": 0.55, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.2,
+      "radius": 0.7,
+      "ringThickness": 0.16,
+      "palmArcCount": 5.0,
+      "palmBend": 0.3,
+      "pistilRadius": 0.25,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.25, 0.4, 0.6 ],
+      "modifiers": []
+    }
+  ],
+  "timing": {
+    "events": []
+  }
+}
