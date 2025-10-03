@@ -1,0 +1,101 @@
+# Unity Visual Effect Graph asset (conceptual placeholder)
+# Ring burst constrained to a 2D torus-like circle.
+Version: 1
+Name: FW_Ring
+Parameters:
+  - name: starCount
+    type: int
+    default: 10000
+  - name: burstRadius
+    type: float
+    default: 16.0
+  - name: colorGradient
+    type: gradient
+    default:
+      colorKeys:
+        - time: 0.0
+          color: {r: 5.5, g: 4.0, b: 7.5, a: 1.0}
+        - time: 0.6
+          color: {r: 1.8, g: 0.8, b: 3.5, a: 1.0}
+        - time: 1.0
+          color: {r: 0.1, g: 0.05, b: 0.3, a: 1.0}
+      alphaKeys:
+        - time: 0.0
+          alpha: 1.0
+        - time: 0.75
+          alpha: 0.6
+        - time: 1.0
+          alpha: 0.0
+  - name: drag
+    type: float
+    default: 0.03
+  - name: gravityFactor
+    type: float
+    default: -1.0
+  - name: trailLength
+    type: float
+    default: 0.25
+  - name: strobeFrequency
+    type: float
+    default: 6.0
+Contexts:
+  - name: Launch
+    type: Spawner
+    events:
+      - name: OnLaunch
+        burst:
+          count: 1
+          delay: 0.0
+      - name: OnBurst
+        burst:
+          count: starCount
+          delay: 0.0
+  - name: Initialize
+    type: InitializeParticle
+    source: Launch
+    capacity: 18000
+    setBlocks:
+      - block: SetPositionTorus
+        majorRadius: burstRadius
+        minorRadius: 0.35
+        upVector: {x: 0, y: 1, z: 0}
+      - block: SetVelocityFromDirection
+        direction: Tangential
+        magnitude: { min: burstRadius * 0.9, max: burstRadius * 1.3 }
+      - block: SetLifetimeRandom
+        range: { min: 2.2, max: 3.6 }
+      - block: SetColorOverLife
+        gradient: colorGradient
+      - block: SetSizeRandom
+        range: { min: 0.035, max: 0.065 }
+      - block: SetDrag
+        coefficient: drag
+      - block: SetAttribute
+        attribute: gravityFactor
+        value: gravityFactor
+  - name: Update
+    type: UpdateParticle
+    source: Initialize
+    updateBlocks:
+      - block: IntegrateVelocity
+      - block: ApplyGravity
+        gravity: { x: 0, y: gravityFactor, z: 0 }
+      - block: ApplyDrag
+        coefficient: drag
+      - block: StrobeAlpha
+        frequency: strobeFrequency
+      - block: UpdateTrails
+        length: trailLength
+  - name: Output
+    type: OutputParticleQuad
+    source: Update
+    settings:
+      blendMode: Additive
+      lighting: Unlit
+      useHDR: true
+      useExposureWeight: true
+      sortPriority: 6
+      flipbookLayout: PolarToRectangular
+Notes:
+  - Position torus can be recreated by sampling a sphere and flattening Y to zero.
+  - StrobeAlpha should toggle alpha via custom sin(Time * frequency) > threshold block.

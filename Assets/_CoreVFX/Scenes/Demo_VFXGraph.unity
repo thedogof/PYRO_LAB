@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+# Conceptual demo scene layout for the prototype VFX Graph fireworks showcase.
+--- !u!1 &100000
+GameObject:
+  m_Name: FireworkLauncher
+  m_Layer: 0
+  m_IsActive: 1
+  m_Component:
+    - component: {fileID: 100001}
+    - component: {fileID: 100002}
+--- !u!4 &100001
+Transform:
+  m_GameObject: {fileID: 100000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Father: {fileID: 0}
+--- !u!114 &100002
+MonoBehaviour:
+  m_GameObject: {fileID: 100000}
+  m_Script: {fileID: 11500000, guid: 622ed9fa87da400fa491b4045af9cdc9, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  autoLoop: 1
+  variants:
+    - displayName: Peony
+      effect: {fileID: 0}
+      starCount: 12000
+      burstRadius: 18
+      drag: 0.05
+      gravityFactor: -0.5
+      trailLength: 0.35
+      strobeFrequency: 0
+      launchInterval: 3
+      explosionDelay: 1.6
+    - displayName: Willow
+      effect: {fileID: 0}
+      starCount: 14000
+      burstRadius: 22
+      drag: 0.12
+      gravityFactor: -6.5
+      trailLength: 0.9
+      strobeFrequency: 0
+      launchInterval: 4.2
+      explosionDelay: 2.1
+    - displayName: Ring
+      effect: {fileID: 0}
+      starCount: 10000
+      burstRadius: 16
+      drag: 0.03
+      gravityFactor: -1
+      trailLength: 0.25
+      strobeFrequency: 6
+      launchInterval: 3.4
+      explosionDelay: 1.3
+# Additional GameObjects (camera, skybox, VFX graph hosts) should be added within Unity Editor.
