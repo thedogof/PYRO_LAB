@@ -1,0 +1,94 @@
+{
+  "recipeName": "Willow",
+  "size": 1.15,
+  "desiredBurstHeight": 110.0,
+  "fuseTime": 2.8,
+  "sizeOverLifetime": {
+    "keys": [
+      { "time": 0.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.85, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 0.4, "value": 1.0, "inTangent": 0.0, "outTangent": -0.9, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 1.0, "value": 0.05, "inTangent": 0.0, "outTangent": 0.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 }
+    ],
+    "preWrapMode": 1,
+    "postWrapMode": 1
+  },
+  "colorOverLifetime": {
+    "colorKeys": [
+      { "color": { "r": 1.0, "g": 0.9, "b": 0.6, "a": 1.0 }, "time": 0.0 },
+      { "color": { "r": 0.95, "g": 0.75, "b": 0.4, "a": 1.0 }, "time": 1.0 }
+    ],
+    "alphaKeys": [
+      { "alpha": 1.0, "time": 0.0 },
+      { "alpha": 0.0, "time": 1.0 }
+    ]
+  },
+  "hdrIntensity": 2.9,
+  "launchVariance": 0.16,
+  "burstSymmetry": 0.8,
+  "angularSpread": 5.0,
+  "spreadJitter": 0.08,
+  "gravityFactor": 0.28,
+  "trailLengthScale": 4.4,
+  "layers": [
+    {
+      "pattern": 1,
+      "starCount": 420,
+      "speedMin": 5.2,
+      "speedMax": 8.6,
+      "spread": 0.18,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.9, "b": 0.6, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 0.95, "g": 0.75, "b": 0.4, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 4.6,
+      "radius": 1.1,
+      "ringThickness": 0.2,
+      "palmArcCount": 6.0,
+      "palmBend": 0.4,
+      "pistilRadius": 0.25,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.35, 0.65, 1.0 ],
+      "modifiers": [
+        {
+          "type": "PyroLab.Fireworks.TrailModifier, Assembly-CSharp",
+          "json": "{\n    \\"isEnabled\\": true,\n    \\"lengthScale\\": 5.0,\n    \\"velocityStretch\\": 0.75\n}"
+        }
+      ]
+    },
+    {
+      "pattern": 4,
+      "starCount": 80,
+      "speedMin": 4.0,
+      "speedMax": 6.5,
+      "spread": 0.0,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.85, "b": 0.5, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.85, "b": 0.5, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.5,
+      "radius": 0.4,
+      "ringThickness": 0.12,
+      "palmArcCount": 3.0,
+      "palmBend": 0.2,
+      "pistilRadius": 0.18,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.2, 0.35, 0.5 ],
+      "modifiers": []
+    }
+  ],
+  "timing": {
+    "events": []
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "recipeName": "Heart",
+  "size": 1.1,
+  "desiredBurstHeight": 88.0,
+  "fuseTime": 2.3,
+  "sizeOverLifetime": {
+    "keys": [
+      { "time": 0.0, "value": 0.0, "inTangent": 0.0, "outTangent": 0.75, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 0.5, "value": 1.0, "inTangent": 0.0, "outTangent": -1.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 },
+      { "time": 1.0, "value": 0.05, "inTangent": 0.0, "outTangent": 0.0, "tangentMode": 0, "weightedMode": 0, "inWeight": 0.33333334, "outWeight": 0.33333334 }
+    ],
+    "preWrapMode": 1,
+    "postWrapMode": 1
+  },
+  "colorOverLifetime": {
+    "colorKeys": [
+      { "color": { "r": 1.0, "g": 0.35, "b": 0.5, "a": 1.0 }, "time": 0.0 },
+      { "color": { "r": 1.0, "g": 0.65, "b": 0.75, "a": 1.0 }, "time": 1.0 }
+    ],
+    "alphaKeys": [
+      { "alpha": 1.0, "time": 0.0 },
+      { "alpha": 0.0, "time": 1.0 }
+    ]
+  },
+  "hdrIntensity": 2.9,
+  "launchVariance": 0.17,
+  "burstSymmetry": 0.84,
+  "angularSpread": 4.0,
+  "spreadJitter": 0.05,
+  "gravityFactor": 0.2,
+  "trailLengthScale": 3.4,
+  "layers": [
+    {
+      "pattern": 2,
+      "starCount": 260,
+      "speedMin": 5.5,
+      "speedMax": 9.2,
+      "spread": 0.0,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.35, "b": 0.5, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.65, "b": 0.75, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.4,
+      "radius": 0.95,
+      "ringThickness": 0.24,
+      "palmArcCount": 4.0,
+      "palmBend": 0.35,
+      "pistilRadius": 0.22,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.35, 0.55, 0.8 ],
+      "modifiers": [
+        {
+          "type": "PyroLab.Fireworks.SplitModifier, Assembly-CSharp",
+          "json": "{\n    \"isEnabled\": true,\n    \"splitTime\": 0.38,\n    \"splitCount\": 2,\n    \"splitSpeed\": 5.0,\n    \"angularJitter\": 0.15\n}"
+        }
+      ]
+    },
+    {
+      "pattern": 0,
+      "starCount": 90,
+      "speedMin": 4.5,
+      "speedMax": 7.5,
+      "spread": 0.1,
+      "layerColor": {
+        "colorKeys": [
+          { "color": { "r": 1.0, "g": 0.8, "b": 0.9, "a": 1.0 }, "time": 0.0 },
+          { "color": { "r": 1.0, "g": 0.8, "b": 0.9, "a": 1.0 }, "time": 1.0 }
+        ],
+        "alphaKeys": [
+          { "alpha": 1.0, "time": 0.0 },
+          { "alpha": 0.0, "time": 1.0 }
+        ]
+      },
+      "lifetime": 3.0,
+      "radius": 0.5,
+      "ringThickness": 0.12,
+      "palmArcCount": 4.0,
+      "palmBend": 0.25,
+      "pistilRadius": 0.2,
+      "projectionMask": null,
+      "layeredShellRadii": [ 0.2, 0.35, 0.5 ],
+      "modifiers": []
+    }
+  ],
+  "timing": {
+    "events": []
+  }
+}

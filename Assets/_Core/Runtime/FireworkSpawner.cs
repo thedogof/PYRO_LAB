@@ -166,5 +166,10 @@ namespace PyroLab.Fireworks
 
             SetRecipes(catalog.Recipes);
         }
+
+        public RecipeCostEstimate EstimateCost(FireworkRecipe recipe)
+        {
+            return RecipeCostUtility.Estimate(recipe);
+        }
     }
 }
