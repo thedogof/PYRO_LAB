@@ -1,6 +1,6 @@
 {
   "$schema": "https://example.com/pyro_lab/hanabi_types.schema.json",
-  "version": "1.0",
+  "version": "1.1",
   "types": [
     {
       "id": "peony",
@@ -90,25 +90,141 @@
               "modifiers": ["Trail(5.0)", "GravityDrag(0.35)", "Fade(verySlow)"]
             },
             "notes": "拖尾與重力感是關鍵；可搭外層覆蓋形成錦冠感。"
-          },
-          {
-            "engine": "vfx",
-            "recipeHint": {
-              "starCount": 10000,
-              "burstRadius": 18.0,
-              "drag": 0.35,
-              "gravityFactor": 0.4,
-              "tailLength": 5.0,
-              "strobeFrequency": 0.0,
-              "colorGradientRef": "Gold"
-            },
-            "notes": "VFX Graph 版測試大規模 GPU 粒子。"
           }
         ]
       },
       "unlock": { "rarity": 3, "minReputation": 120, "costTier": "T2" },
       "references": [
         { "title": "大曲花火介紹頁（文化）", "url": "https://example.org/oomagari" }
+      ]
+    },
+    {
+      "id": "brocade_crown",
+      "names": { "ja": "錦冠", "romaji": "Nishiki", "en": "Brocade Crown", "zh": "錦冠" },
+      "tags": ["gold", "crown", "long-trail"],
+      "shortDesc": "金色拖尾密集，形成覆蓋全空的巨大花冠。",
+      "cultureNotes": [
+        "錦冠花火常作為大型競技會壓軸，象徵華麗與圓滿。",
+        "在大曲花火大會等比賽中，錦冠是否能完整覆蓋天幕是一個評分重點。"
+      ],
+      "visualMapping": {
+        "pattern": "Crown",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 600,
+              "burstSpeedMin": 7.5,
+              "burstSpeedMax": 11.0,
+              "spread": 0.025,
+              "hdrIntensity": 3.0,
+              "lifetime": 3.2,
+              "colorGradientRef": "DeepGold",
+              "modifiers": ["Trail(6.0)", "GravityDrag(0.4)", "Fade(verySlow)"]
+            },
+            "notes": "拖尾需長且緩慢，整體要有『沉重下墜感』。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 4, "minReputation": 300, "costTier": "T4" },
+      "references": [
+        { "title": "大曲花火競技大會", "url": "https://www.oomagari-hanabi.com/" }
+      ]
+    },
+    {
+      "id": "palm",
+      "names": { "ja": "椰子", "romaji": "Yashi", "en": "Palm", "zh": "椰子樹" },
+      "tags": ["palm", "comet", "trunk"],
+      "shortDesc": "以粗大彗星作為主幹，末端開展成椰子樹狀。",
+      "cultureNotes": [
+        "因主幹清晰明顯，常用於節奏感強烈的編排中。"
+      ],
+      "visualMapping": {
+        "pattern": "Palm",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 220,
+              "burstSpeedMin": 9.0,
+              "burstSpeedMax": 12.5,
+              "spread": 0.04,
+              "hdrIntensity": 2.5,
+              "lifetime": 2.2,
+              "colorGradientRef": "Amber",
+              "modifiers": ["Trail(2.5)", "CometCore"]
+            },
+            "notes": "中央幹需粗亮，外圍呈放射狀。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 2, "minReputation": 80, "costTier": "T2" },
+      "references": [
+        { "title": "椰子型花火介紹", "url": "https://example.org/palm" }
+      ]
+    },
+    {
+      "id": "spider",
+      "names": { "ja": "蜘蛛", "romaji": "Kumo", "en": "Spider", "zh": "蜘蛛" },
+      "tags": ["long-trail", "fast", "spiky"],
+      "shortDesc": "高速直線拖尾，張力十足，如蜘蛛足般射出。",
+      "cultureNotes": [
+        "蜘蛛型強調剛勁與速度，常作為動態對比效果。"
+      ],
+      "visualMapping": {
+        "pattern": "Spider",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 280,
+              "burstSpeedMin": 12.0,
+              "burstSpeedMax": 16.0,
+              "spread": 0.01,
+              "hdrIntensity": 2.8,
+              "lifetime": 1.6,
+              "colorGradientRef": "White",
+              "modifiers": ["Trail(3.5)", "SharpSpread"]
+            },
+            "notes": "拖尾短促，速度快，強調剛硬線條感。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 3, "minReputation": 150, "costTier": "T3" },
+      "references": [
+        { "title": "蜘蛛花火（比賽範例）", "url": "https://example.org/spider" }
+      ]
+    },
+    {
+      "id": "senrin",
+      "names": { "ja": "千輪", "romaji": "Senrin", "en": "Thousand Ring", "zh": "千輪" },
+      "tags": ["multi-burst", "dots"],
+      "shortDesc": "由多個小爆點組成，像繁星散落夜空。",
+      "cultureNotes": [
+        "千輪常用於烘托群星般的效果，與大型煙火結合更顯壯觀。"
+      ],
+      "visualMapping": {
+        "pattern": "MultiBurst",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 800,
+              "burstSpeedMin": 6.5,
+              "burstSpeedMax": 9.0,
+              "spread": 0.05,
+              "hdrIntensity": 2.0,
+              "lifetime": 2.2,
+              "colorGradientRef": "Silver",
+              "modifiers": ["Strobe", "Fade(slow)"]
+            },
+            "notes": "分成多層小爆，營造繁星感。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 3, "minReputation": 200, "costTier": "T3" },
+      "references": [
+        { "title": "千輪樣式介紹", "url": "https://example.org/senrin" }
       ]
     },
     {
@@ -145,6 +261,38 @@
       "unlock": { "rarity": 3, "minReputation": 160, "costTier": "T3" },
       "references": [
         { "title": "花火樣式一覽（文化介紹）", "url": "https://example.org/hanabi-styles" }
+      ]
+    },
+    {
+      "id": "strobe",
+      "names": { "ja": "閃光", "romaji": "Senko", "en": "Strobe", "zh": "閃爍" },
+      "tags": ["strobe", "sparkle"],
+      "shortDesc": "閃爍不定的光點，營造繁星閃亮效果。",
+      "cultureNotes": [
+        "常與其他煙火結合，增加夢幻與動態層次感。"
+      ],
+      "visualMapping": {
+        "pattern": "Strobe",
+        "recommendedPresets": [
+          {
+            "engine": "shuriken",
+            "recipeHint": {
+              "starCount": 500,
+              "burstSpeedMin": 7.0,
+              "burstSpeedMax": 10.0,
+              "spread": 0.03,
+              "hdrIntensity": 2.5,
+              "lifetime": 2.4,
+              "colorGradientRef": "BlueWhite",
+              "modifiers": ["Strobe(0.2)"]
+            },
+            "notes": "隨機閃爍，適合疊加在牡丹或菊上。"
+          }
+        ]
+      },
+      "unlock": { "rarity": 2, "minReputation": 90, "costTier": "T2" },
+      "references": [
+        { "title": "閃光花火介紹", "url": "https://example.org/strobe" }
       ]
     },
     {
