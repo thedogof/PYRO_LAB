@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890b7973d43a4df99245ef1c682ebf2c, type: 3}
+  m_Name: Preset_WillowShimmer
+  m_EditorClassIdentifier: 
+  displayName: Willow Shimmer Duo
+  papers:
+  - {fileID: 11400000, guid: eecc7696a3f04d6b95c3c56ff7879665, type: 2}
+  fuse: {fileID: 11400000, guid: e5a2883f0dd742e496bc4cbdc125ae49, type: 2}
+  shell: {fileID: 11400000, guid: 897ad09134ec432eb5379aaca43a0bc7, type: 2}
+  starCompounds:
+  - {fileID: 11400000, guid: 1608d71e2c154dd9bac2370ab33ed846, type: 2}
+  - {fileID: 11400000, guid: 02929ab9b09142ef85239307fc2783ef, type: 2}
+  burstCore: {fileID: 11400000, guid: afd7c6afb3d74e06acbc2ac9dbe8b738, type: 2}
+  timing: {fileID: 11400000, guid: 8f339c823aed49628438db693d2d2acc, type: 2}
