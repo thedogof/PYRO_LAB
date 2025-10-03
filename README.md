@@ -90,3 +90,40 @@ README.md
 
 ## 📄 授權
 MIT License
+
+## 🔬 VFX Graph 研究原型（feature/vfx-graph-research）
+本分支新增了一組以 **Unity VFX Graph** 為核心的花火實驗原型，僅針對視覺與數學模擬進行研究，**嚴禁** 用於任何真實煙火製造或化學試驗。
+
+### 檔案結構
+```
+Assets/_CoreVFX/
+  Graphs/
+    FW_Peony.vfx        # 球殼 Peony 花形
+    FW_Willow.vfx       # 垂墜 Willow 柳枝
+    FW_Ring.vfx         # 平面環形 Ring
+  Scripts/
+    VFXFireworkLauncher.cs
+  Scenes/
+    Demo_VFXGraph.unity
+```
+
+> `.vfx` 與 `.unity` 目前為概念性 YAML 設定，說明了需要在 Unity 編輯器內建立的 VFX Graph 節點、參數與場景佈局。開啟後依照註解重建即可得到等效的圖形。所有參數皆為 HDR 純視覺設定，不牽涉真實物質。
+
+### Demo 操作
+1. 在 Unity 2022.3 LTS + URP 中開啟 `Assets/_CoreVFX/Scenes/Demo_VFXGraph.unity`。
+2. 場景內 `FireworkLauncher` 物件掛載 `VFXFireworkLauncher` 腳本，可綁定三個 VFX Graph（Peony / Willow / Ring）。
+3. 播放時按下 `1 / 2 / 3` 鍵可切換不同花火；空白鍵觸發單次發射（或使用自動輪播）。
+4. 在 Inspector 中調整 `starCount`、`burstRadius`、`colorGradient`、`drag`、`gravityFactor`、`trailLength`、`strobeFrequency` 等公開參數即可即時測試。
+
+### GPU 粒子測試建議
+- 在每個 VFX Graph 的 Initialize Context 中將 `Capacity` 設為 ≥ 20000。
+- 使用 `Set Position (Sphere)` 的 Surface 模式確保爆炸均勻分佈，並搭配 `Set Velocity Random Direction` 控制出射能量。
+- Willow 變體需提高 `Drag` 與 `Gravity`，同時啟用 Trail/Spark Strip 以模擬下垂尾巴。
+- Ring 變體可將 Y 分量鎖為 0 或使用自訂 Torus 取樣節點，達成 2D 環形。
+
+### 研究問題筆記
+- **URP 下的 Bloom + HDR**：透過 URP Volume 啟用 Bloom、設定高強度閾值並使用 HDR 顏色（>1）即可讓花火在後期管線中泛光。
+- **GPU 粒子上限**：VFX Graph 受限於 GPU 記憶體與 context capacity，單個系統常見上限約落在 1~4 百萬粒子；實務上為維持 60 FPS 可將 capacity 控制在 50~100k 並視顯卡調整。
+- **C# 與 ScriptableObject 連動**：`VFXFireworkLauncher` 示範透過 `VisualEffect` API 以事件 (`SendEvent`) 與參數 (`SetInt/SetFloat/SetGradient`) 控制 Graph。若需資料驅動，可加上 ScriptableObject（例如 Firework 配方）並在播放前注入參數。
+
+> **再次提醒**：所有程式碼與文件皆僅供視覺研究使用，嚴禁應用於真實煙火設計、製造或測試。

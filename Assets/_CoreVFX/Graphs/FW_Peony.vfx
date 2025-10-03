@@ -1,0 +1,99 @@
+# Unity Visual Effect Graph asset (conceptual placeholder)
+# This lightweight YAML describes the node graph so it can be rebuilt in-editor.
+# It is intentionally minimal and focuses on documenting the sphere shell peony burst.
+Version: 1
+Name: FW_Peony
+Parameters:
+  - name: starCount
+    type: int
+    default: 12000
+  - name: burstRadius
+    type: float
+    default: 18.0
+  - name: colorGradient
+    type: gradient
+    default:
+      colorKeys:
+        - time: 0.0
+          color: {r: 8.0, g: 4.5, b: 2.0, a: 1.0}
+        - time: 0.45
+          color: {r: 1.5, g: 0.6, b: 0.1, a: 1.0}
+        - time: 1.0
+          color: {r: 0.05, g: 0.05, b: 0.2, a: 1.0}
+      alphaKeys:
+        - time: 0.0
+          alpha: 1.0
+        - time: 1.0
+          alpha: 0.0
+  - name: drag
+    type: float
+    default: 0.05
+  - name: gravityFactor
+    type: float
+    default: -0.5
+  - name: trailLength
+    type: float
+    default: 0.35
+  - name: strobeFrequency
+    type: float
+    default: 0.0
+Contexts:
+  - name: Launch
+    type: Spawner
+    events:
+      - name: OnLaunch
+        burst:
+          count: 1
+          delay: 0.0
+      - name: OnBurst
+        burst:
+          count: starCount
+          delay: 0.0
+  - name: Initialize
+    type: InitializeParticle
+    source: Launch
+    capacity: 20000
+    setBlocks:
+      - block: SetPositionSphere
+        radius: burstRadius
+        distribution: RandomUniformShell
+      - block: SetVelocityFromDirection
+        magnitude: { min: burstRadius * 0.75, max: burstRadius * 1.25 }
+      - block: SetColorOverLife
+        gradient: colorGradient
+      - block: SetLifetimeRandom
+        range: { min: 2.6, max: 4.0 }
+      - block: SetSizeRandom
+        range: { min: 0.04, max: 0.08 }
+      - block: SetDrag
+        coefficient: drag
+      - block: SetAttribute
+        attribute: gravityFactor
+        value: gravityFactor
+  - name: Update
+    type: UpdateParticle
+    source: Initialize
+    updateBlocks:
+      - block: IntegrateVelocity
+      - block: ApplyGravity
+        gravity: { x: 0, y: gravityFactor, z: 0 }
+      - block: ApplyDrag
+        coefficient: drag
+      - block: UpdateTrails
+        length: trailLength
+      - block: StrobeAlpha
+        frequency: strobeFrequency
+  - name: Output
+    type: OutputParticleQuad
+    source: Update
+    settings:
+      blendMode: Additive
+      lighting: Unlit
+      useHDR: true
+      useExposureWeight: true
+      sortPriority: 4
+      motionVector: PerParticle
+Notes:
+  - Rebuild sphere shell sampling with Position (Sphere) block set to Volume "Surface Only".
+  - Velocity over Lifetime can be emulated by the SetVelocityFromDirection block using custom magnitude curve.
+  - StrobeAlpha should toggle alpha via a periodic sine; rebuild as an Update > Set Attribute (Alpha) block using modulo time.

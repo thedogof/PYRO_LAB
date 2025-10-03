@@ -1,0 +1,99 @@
+# Unity Visual Effect Graph asset (conceptual placeholder)
+# Willow shell variant with heavy drag and gravity arcs.
+Version: 1
+Name: FW_Willow
+Parameters:
+  - name: starCount
+    type: int
+    default: 14000
+  - name: burstRadius
+    type: float
+    default: 22.0
+  - name: colorGradient
+    type: gradient
+    default:
+      colorKeys:
+        - time: 0.0
+          color: {r: 6.5, g: 5.5, b: 4.0, a: 1.0}
+        - time: 0.55
+          color: {r: 3.0, g: 2.4, b: 1.2, a: 1.0}
+        - time: 1.0
+          color: {r: 0.5, g: 0.45, b: 0.35, a: 1.0}
+      alphaKeys:
+        - time: 0.0
+          alpha: 1.0
+        - time: 0.8
+          alpha: 0.35
+        - time: 1.0
+          alpha: 0.0
+  - name: drag
+    type: float
+    default: 0.12
+  - name: gravityFactor
+    type: float
+    default: -6.5
+  - name: trailLength
+    type: float
+    default: 0.9
+  - name: strobeFrequency
+    type: float
+    default: 0.0
+Contexts:
+  - name: Launch
+    type: Spawner
+    events:
+      - name: OnLaunch
+        burst:
+          count: 1
+          delay: 0.0
+      - name: OnBurst
+        burst:
+          count: starCount
+          delay: 0.0
+  - name: Initialize
+    type: InitializeParticle
+    source: Launch
+    capacity: 25000
+    setBlocks:
+      - block: SetPositionSphere
+        radius: burstRadius
+        distribution: RandomUniformShell
+      - block: SetVelocityFromDirection
+        direction: Spherical
+        magnitude: { min: burstRadius * 0.65, max: burstRadius * 1.1 }
+      - block: SetLifetimeRandom
+        range: { min: 4.5, max: 7.0 }
+      - block: SetColorOverLife
+        gradient: colorGradient
+      - block: SetSizeRandom
+        range: { min: 0.05, max: 0.12 }
+      - block: SetDrag
+        coefficient: drag
+      - block: SetAttribute
+        attribute: gravityFactor
+        value: gravityFactor
+  - name: Update
+    type: UpdateParticle
+    source: Initialize
+    updateBlocks:
+      - block: IntegrateVelocity
+      - block: ApplyGravity
+        gravity: { x: 0, y: gravityFactor, z: 0 }
+      - block: ApplyDrag
+        coefficient: drag
+      - block: VelocityOverLifetime
+        curve: EaseOut
+      - block: UpdateTrails
+        length: trailLength
+  - name: Output
+    type: OutputParticleMesh
+    source: Update
+    settings:
+      mesh: BuiltInSphereBillboard
+      blendMode: Additive
+      lighting: Unlit
+      useHDR: true
+      useExposureWeight: true
+Notes:
+  - Implement the willow drape by combining drag + gravity + Velocity over Lifetime curve.
+  - Trails should be GPU strips; configure Trail block with custom lifetime binding.
