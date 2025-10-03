@@ -65,6 +65,14 @@ README.md
 3. 使用 **Preview** 按鈕於編輯器模式播放視覺模擬。
 4. 透過 **Export JSON** / **Import JSON** 保存或載入純文字 Recipe 設定。
 
+## 🧭 Phase 2 擴充藍圖
+- 以日本花火風格為靈感，將「紙皮層數、星粒排列、導火延遲、特效粉末」抽象為純數值參數。
+- 第二階段分為三個功能分支，詳細請見 `docs/phase2-expansion-plan.md`：
+  - **Workshop & Material System**：建立材料資料庫、工作坊 UI 與 JSON 匯入／匯出。
+  - **Assembly & Crafting Flow**：提供積木式製作流程、視覺化製作痕跡、TimingTrack 強化。
+  - **Economy & Growth**：導入材料價格、合約需求、品質評分與進程解鎖。
+- Demo 場景將展示「購買材料 → 拼裝配方 → 測試 → 賣出升級」的循環，所有內容皆為視覺模擬用途。
+
 ## 📦 JSON 匯出／匯入
 - 匯出：於 Inspector 點擊 **Export JSON**，指定路徑後即可產生純文字 JSON。
 - 匯入：於 Inspector 點擊 **Import JSON**，選擇先前匯出的檔案即可覆寫 ScriptableObject 參數。
