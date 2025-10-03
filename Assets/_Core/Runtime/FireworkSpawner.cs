@@ -17,6 +17,8 @@ namespace PyroLab.Fireworks
         private float timer;
         private int nextRecipeIndex;
 
+        public IReadOnlyList<FireworkRecipe> Recipes => recipes;
+
         private void Update()
         {
             if (autoLoop && recipes.Count > 0)
@@ -121,6 +123,48 @@ namespace PyroLab.Fireworks
 
             clone.timing = original.timing != null ? original.timing.Clone() : new TimingTrack();
             return clone;
+        }
+
+        public void SetActiveRecipe(FireworkRecipe recipe)
+        {
+            recipes.Clear();
+            if (recipe != null)
+            {
+                recipes.Add(recipe);
+            }
+
+            nextRecipeIndex = 0;
+            timer = 0f;
+            scaledCache.Clear();
+        }
+
+        public void SetRecipes(IEnumerable<FireworkRecipe> newRecipes)
+        {
+            recipes.Clear();
+            if (newRecipes != null)
+            {
+                foreach (var recipe in newRecipes)
+                {
+                    if (recipe != null)
+                    {
+                        recipes.Add(recipe);
+                    }
+                }
+            }
+
+            nextRecipeIndex = 0;
+            timer = 0f;
+            scaledCache.Clear();
+        }
+
+        public void LoadCatalog(RecipeCatalog catalog)
+        {
+            if (catalog == null)
+            {
+                return;
+            }
+
+            SetRecipes(catalog.Recipes);
         }
     }
 }
