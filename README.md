@@ -165,3 +165,6 @@ Assets/_CoreVFX/
 - [shell-structure.md](shell-structure.md)
 - [star-arrangement.md](star-arrangement.md)
 - [star-compounds.md](star-compounds.md)
+
+## Docs
+See the structured docs under [/docs](docs/README.md).
