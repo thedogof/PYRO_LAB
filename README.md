@@ -157,3 +157,11 @@ Assets/_CoreVFX/
 - **C# 與 ScriptableObject 連動**：`VFXFireworkLauncher` 示範透過 `VisualEffect` API 以事件 (`SendEvent`) 與參數 (`SetInt/SetFloat/SetGradient`) 控制 Graph。若需資料驅動，可加上 ScriptableObject（例如 Firework 配方）並在播放前注入參數。
 
 > **再次提醒**：所有程式碼與文件皆僅供視覺研究使用，嚴禁應用於真實煙火設計、製造或測試。
+
+## Fireworks Docs
+- [burst-patterns.md](burst-patterns.md)
+- [culture-and-events.md](culture-and-events.md)
+- [fuse-timing.md](fuse-timing.md)
+- [shell-structure.md](shell-structure.md)
+- [star-arrangement.md](star-arrangement.md)
+- [star-compounds.md](star-compounds.md)
