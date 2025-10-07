@@ -97,7 +97,7 @@ README.md
 
 ## 🧭 Phase 2 擴充藍圖
 - 以日本花火風格為靈感，將「紙皮層數、星粒排列、導火延遲、特效粉末」抽象為純數值參數。
-- 第二階段分為三個功能分支，詳細請見 `docs/phase2-expansion-plan.md`：
+- 第二階段分為三個功能分支，詳細請見 `docs/98-roadmap/phase2-expansion-plan.md`：
   - **Workshop & Material System**：建立材料資料庫、工作坊 UI 與 JSON 匯入／匯出。
   - **Assembly & Crafting Flow**：提供積木式製作流程、視覺化製作痕跡、TimingTrack 強化。
   - **Economy & Growth**：導入材料價格、合約需求、品質評分與進程解鎖。
